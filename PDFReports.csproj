@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A782B7AC-15CA-46E7-9F0E-6D8EC3E26F8C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Org.Reddragonit.PDFReports</RootNamespace>
+    <AssemblyName>PDFReports</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums.cs" />
+    <Compile Include="PageElements\ReportBarCode.cs" />
+    <Compile Include="PageElements\ReportList.cs" />
+    <Compile Include="PageElements\TableComponents\TableCellImage.cs" />
+    <Compile Include="PDF\ADocumentPiece.cs" />
+    <Compile Include="PDF\IComponent.cs" />
+    <Compile Include="PDF\PageComponents\PDFBrush.cs" />
+    <Compile Include="PDF\PageComponents\PDFColor.cs" />
+    <Compile Include="PDF\PageComponents\PDFFillRectangle.cs" />
+    <Compile Include="PDF\PageComponents\PDFImage.cs" />
+    <Compile Include="PDF\PageComponents\PDFLine.cs" />
+    <Compile Include="PDF\PageComponents\PDFPen.cs" />
+    <Compile Include="PDF\PageComponents\PDFRectangle.cs" />
+    <Compile Include="PDF\PageComponents\PDFText.cs" />
+    <Compile Include="PDF\PDFDocument.cs" />
+    <Compile Include="PDF\PDFFont.cs" />
+    <Compile Include="PDF\PDFGraphics.cs" />
+    <Compile Include="PDF\PDFHeader.cs" />
+    <Compile Include="PDF\PDFInfo.cs" />
+    <Compile Include="PDF\PageComponents\PDFPage.cs" />
+    <Compile Include="PDF\PDFOutlines.cs" />
+    <Compile Include="PDF\PDFPageTree.cs" />
+    <Compile Include="PDF\PDFTrailer.cs" />
+    <Compile Include="Structures.cs" />
+    <Compile Include="TemplateExtensions\EvalComponent.cs" />
+    <Compile Include="Exceptions\InvalidAttributeExceptionValue.cs" />
+    <Compile Include="Exceptions\InvalidChildElementException.cs" />
+    <Compile Include="Exceptions\MissingAttributeException.cs" />
+    <Compile Include="Exceptions\MissingElementException.cs" />
+    <Compile Include="Exceptions\MissingFontException.cs" />
+    <Compile Include="Exceptions\MissingImageExceptions.cs" />
+    <Compile Include="Exceptions\UnableToLoadException.cs" />
+    <Compile Include="Exceptions\UnexpectedElementException.cs" />
+    <Compile Include="Interfaces\PageElement.cs" />
+    <Compile Include="Interfaces\ReportElement.cs" />
+    <Compile Include="Interfaces\TableElement.cs" />
+    <Compile Include="Interfaces\XmlLoadableElement.cs" />
+    <Compile Include="PageElements\ReportImage.cs" />
+    <Compile Include="PageElements\ReportLine.cs" />
+    <Compile Include="PageElements\ReportParagraph.cs" />
+    <Compile Include="PageElements\ReportRectangle.cs" />
+    <Compile Include="PageElements\ReportTable.cs" />
+    <Compile Include="PageElements\TableComponents\ReportTableCell.cs" />
+    <Compile Include="PageElements\TableComponents\ReportTableHeader.cs" />
+    <Compile Include="PageElements\TableComponents\ReportTableRow.cs" />
+    <Compile Include="PageElements\TableComponents\ReportTableStyle.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.cs" />
+    <Compile Include="ReportElements\ReportFont.cs" />
+    <Compile Include="ReportElements\ReportPage.cs" />
+    <Compile Include="TemplateExtensions\EvalComponents\Eval.cs" />
+    <Compile Include="TemplateExtensions\EvalComponents\TextParser.cs" />
+    <Compile Include="TestPageGenerator.cs" />
+    <Compile Include="Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\StringTemplate\StringTemplateLibrary\StringTemplate.csproj">
+      <Project>{826664B6-1904-49B8-91AE-2C5ECAA907CD}</Project>
+      <Name>StringTemplate</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
