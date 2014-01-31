@@ -39,7 +39,7 @@ namespace Org.Reddragonit.PDFReports
                 if (node.Name != "Chunk")
                     throw new UnexpectedElementException("Chunk", node.Name, node);
                 _text = node.InnerText.Trim();
-                _font = (node.Attributes["FontStyle"] != null ? node.Attributes["FontStyle"].Value : font);
+                _font = (node.Attributes["FontStyle"] != null ? node.Attributes["FontStyle"].Value : (node.Attributes["Font"]!=null ? node.Attributes["Font"].Value : font));
                 _url = (node.Attributes["URL"] != null ? node.Attributes["URL"].Value : null);
             }
         }
