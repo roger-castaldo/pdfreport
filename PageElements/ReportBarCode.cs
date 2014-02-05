@@ -137,7 +137,7 @@ namespace Org.Reddragonit.PDFReports.PageElements
 
             if (drawText)
             {
-                PDFFont fnt = gfx.Doc.DefineFont(Fonts.TimesRoman,FontStyle.Regular,_fontHeight);
+                PDFFont fnt = gfx.Doc.DefineFont(Fonts.TimesRoman, FontStyle.Regular, _fontHeight, TextDecoration.None);
                 sSize size= gfx.MeasureString(_code,fnt);
                 gfx.DrawString(_code, fnt, PDFBrush.Black, X + ((width-size.Width) / 2), Y + height);
                 height += size.Height;

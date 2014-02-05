@@ -54,7 +54,7 @@ namespace Org.Reddragonit.PDFReports.PDF
 
         #endregion
 
-        internal PDFFont DefineFont(Fonts font, FontStyle style, double size)
+        internal PDFFont DefineFont(Fonts font, FontStyle style, double size,TextDecoration decoration)
         {
             PDFFont ret = null;
             foreach (IComponent ic in _parts)
@@ -62,7 +62,7 @@ namespace Org.Reddragonit.PDFReports.PDF
                 if (ic is PDFFont)
                 {
                     PDFFont pf = (PDFFont)ic;
-                    if (pf.Font == font && pf.Style == style)
+                    if (pf.Font == font && pf.Style == style && pf.Decoration==decoration)
                     {
                         ret = pf;
                         break;
@@ -71,13 +71,13 @@ namespace Org.Reddragonit.PDFReports.PDF
             }
             if (ret == null)
             {
-                ret = new PDFFont(font, style, size, _curFontID, _curObjectID);
+                ret = new PDFFont(font, style, size, _curFontID,decoration, _curObjectID);
                 _curFontID++;
                 _curObjectID++;
                 _parts.Add(ret);
             }
             else
-                ret = new PDFFont(font, style, size, ret.FontNumber, ret.ObjectID);
+                ret = new PDFFont(font, style, size, ret.FontNumber,decoration, ret.ObjectID);
             return ret;
         }
 

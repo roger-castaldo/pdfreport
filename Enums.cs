@@ -17,9 +17,14 @@ namespace Org.Reddragonit.PDFReports
         Bold,
         BoldItalic,
         Italic,
-        Regular,
-        Strikeout,
-        Underline
+        Regular
+    }
+
+    public enum TextDecoration
+    {
+        None,
+        Underline,
+        Strikeout
     }
 
     public enum Fonts
