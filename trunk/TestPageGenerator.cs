@@ -24,7 +24,7 @@ namespace Org.Reddragonit.PDFReports
             double pt = Utility.ExtractPointSize("2pt", GraphicsUnit.Millimeter);
             for (double cnt = 0; cnt < 5; cnt++)
             {
-                PDFFont fnt = gfx.Doc.DefineFont(Fonts.Helvetica, FontStyle.Regular, fsize + cnt);
+                PDFFont fnt = gfx.Doc.DefineFont(Fonts.Helvetica, FontStyle.Regular, fsize + cnt, TextDecoration.None);
                 sSize sz = gfx.MeasureString(_TEST_STRING, fnt);
                 gfx.DrawString(_TEST_STRING, fnt, PDFBrush.Black, 15, y);
                 gfx.DrawRectangle(_PEN, x, y, sz.Width, sz.Height);
@@ -45,7 +45,7 @@ namespace Org.Reddragonit.PDFReports
                 gfx.DrawRectangle(_PEN, x, y, sz.Width, sz.Height);
                 gfx.DrawString(sz.Width.ToString(), fnt, PDFBrush.Black, 150, y);
                 y += sz.Height + pt;
-                fnt = gfx.Doc.DefineFont(Fonts.Helvetica, FontStyle.Bold, fsize + cnt);
+                fnt = gfx.Doc.DefineFont(Fonts.Helvetica, FontStyle.Bold, fsize + cnt, TextDecoration.None);
                 sz = gfx.MeasureString(_TEST_STRING, fnt);
                 gfx.DrawString(_TEST_STRING, fnt, PDFBrush.Black, 15, y);
                 gfx.DrawRectangle(_PEN, x, y, sz.Width, sz.Height);
@@ -73,7 +73,7 @@ namespace Org.Reddragonit.PDFReports
                 gfx.DrawLine(new PDFPen(color, pt / 2), col, 10, col, gfx.PageSize.Height);
             for (int row = 10; row < gfx.PageSize.Height; row += 10)
                 gfx.DrawLine(new PDFPen(color, pt / 2), 10, row, gfx.PageSize.Width, row);
-            PDFFont f = gfx.Doc.DefineFont(Fonts.Helvetica, FontStyle.Regular, 8);
+            PDFFont f = gfx.Doc.DefineFont(Fonts.Helvetica, FontStyle.Regular, 8, TextDecoration.None);
             gfx.DrawString(_TEST_STRING, f, PDFBrush.Black, 10, 10);
             gfx.DrawString(gfx.MeasureString(_TEST_STRING,f).Height.ToString(), f, PDFBrush.Black, 10, 20);
             gfx.Save(ms);

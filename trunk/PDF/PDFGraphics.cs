@@ -124,23 +124,23 @@ namespace Org.Reddragonit.PDFReports.PDF
         {
             sSize sz = MeasureString(text, font);
             x += Utility.ExtractPointSize("1pt", PageUnit);
-            y = y + sz.Height;
+            y += sz.Height;
             _doc.DrawString(_curPage, text, font, brush,
                 Utility.ConvertToPoint(x, PageUnit),
                 _curPage.Height - Utility.ConvertToPoint(y-(sz.Height/4), PageUnit));
-            switch (font.Style)
+            switch (font.Decoration)
             {
-                case FontStyle.Strikeout:
-                    DrawLine(new PDFPen(brush.Color, Utility.ExtractPointSize("1pt", _curPage.Unit)), x - Utility.ExtractPointSize("1pt", _curPage.Unit),
+                case TextDecoration.Strikeout:
+                    DrawLine(new PDFPen(brush.Color, Utility.ExtractPointSize((font.Style==FontStyle.Bold || font.Style==FontStyle.BoldItalic ? "2pt" : "1pt"), _curPage.Unit)), x - Utility.ExtractPointSize("1pt", _curPage.Unit),
                         y + (sz.Height/2),
                         x + Utility.ExtractPointSize("1pt", _curPage.Unit) + sz.Width,
                         y + (sz.Height/2));
                     break;
-                case FontStyle.Underline:
-                    DrawLine(new PDFPen(brush.Color, Utility.ExtractPointSize("1pt", _curPage.Unit)), x - Utility.ExtractPointSize("1pt", _curPage.Unit),
-                        y + Utility.ExtractPointSize("1pt", _curPage.Unit), 
+                case TextDecoration.Underline:
+                    DrawLine(new PDFPen(brush.Color, Utility.ExtractPointSize((font.Style == FontStyle.Bold || font.Style == FontStyle.BoldItalic ? "2pt" : "1pt"), _curPage.Unit)), x - Utility.ExtractPointSize("1pt", _curPage.Unit),
+                        y - Utility.ExtractPointSize((font.Style == FontStyle.Bold || font.Style == FontStyle.BoldItalic ? "3pt" : "1.5pt"), _curPage.Unit), 
                         x+Utility.ExtractPointSize("1pt",_curPage.Unit)+MeasureString(text,font).Width,
-                        y + Utility.ExtractPointSize("1pt", _curPage.Unit));
+                        y - Utility.ExtractPointSize((font.Style == FontStyle.Bold || font.Style == FontStyle.BoldItalic ? "3pt" : "1.5pt"), _curPage.Unit));
                     break;
             }
         }
@@ -235,7 +235,7 @@ namespace Org.Reddragonit.PDFReports.PDF
             {
                 SizeF sf = gfx.MeasureString(c.ToString(),f);
                 width += sf.Width*(_UPPERCHARS.Contains(c) ? upperFactor : 1);
-                height = Math.Max(height,sf.Height);
+                height = Math.Max(height,sf.Height+(float)(font.Decoration==TextDecoration.Underline ? Utility.ExtractPointSize((font.Style == FontStyle.Bold || font.Style == FontStyle.BoldItalic ? "4pt" : "2pt"),PageUnit) : 0));
             }
             width = width * factor;
             return (PageUnit == GraphicsUnit.Centimeter ? new sSize(width / 10, height / 10) : new sSize(width, height));

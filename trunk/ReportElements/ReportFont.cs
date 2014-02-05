@@ -22,6 +22,11 @@ namespace Org.Reddragonit.PDFReports.ReportElements
             get{return _font;}
         }
 
+        public TextDecoration TextDecoration
+        {
+            get { return (this["TextDecoration"] != null ? (TextDecoration)Enum.Parse(typeof(TextDecoration), this["TextDecoration"]) : TextDecoration.None); }
+        }
+
         public Fonts FontFamily
         {
             get { return (Fonts)Enum.Parse(typeof(Fonts), this["FontFamily"]); }
@@ -61,7 +66,7 @@ namespace Org.Reddragonit.PDFReports.ReportElements
 
         internal override void AppendToDocument(ref PDFGraphics gfx, Report rep)
         {
-            _font = gfx.Doc.DefineFont(FontFamily, Style, EM);
+            _font = gfx.Doc.DefineFont(FontFamily, Style, EM,TextDecoration);
         }
     }
 }

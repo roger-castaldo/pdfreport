@@ -19,6 +19,12 @@ namespace Org.Reddragonit.PDFReports.PDF
             get { return _font; }
         }
 
+        private TextDecoration _decoration;
+        public TextDecoration Decoration
+        {
+            get { return _decoration; }
+        }
+
         private double _size;
         public double Size
         {
@@ -31,13 +37,14 @@ namespace Org.Reddragonit.PDFReports.PDF
             get { return _fontNumber; }
         }
 
-        public PDFFont(Fonts font, FontStyle style, double size, int fontNumber, int objectID)
+        public PDFFont(Fonts font, FontStyle style, double size, int fontNumber,TextDecoration decoration, int objectID)
             : base(objectID)
         {
             _font = font;
             _style = style;
             _size = size;
             _fontNumber = fontNumber;
+            _decoration = decoration;
         }
 
         protected override void _AppendContent(StreamWriter bw)
