@@ -137,7 +137,7 @@ namespace Org.Reddragonit.PDFReports.PDF
                         y + (sz.Height/2));
                     break;
                 case TextDecoration.Underline:
-                    DrawLine(new PDFPen(brush.Color, Utility.ExtractPointSize((font.Style == FontStyle.Bold || font.Style == FontStyle.BoldItalic ? "2pt" : "1pt"), _curPage.Unit)), x - Utility.ExtractPointSize("1pt", _curPage.Unit),
+                    DrawLine(new PDFPen(brush.Color, Utility.ExtractPointSize((font.Style == FontStyle.Bold || font.Style == FontStyle.BoldItalic ? "1.5pt" : "1pt"), _curPage.Unit)), x - Utility.ExtractPointSize("1pt", _curPage.Unit),
                         y - Utility.ExtractPointSize((font.Style == FontStyle.Bold || font.Style == FontStyle.BoldItalic ? "3pt" : "1.5pt"), _curPage.Unit), 
                         x+Utility.ExtractPointSize("1pt",_curPage.Unit)+MeasureString(text,font).Width,
                         y - Utility.ExtractPointSize((font.Style == FontStyle.Bold || font.Style == FontStyle.BoldItalic ? "3pt" : "1.5pt"), _curPage.Unit));
