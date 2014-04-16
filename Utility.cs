@@ -95,10 +95,21 @@ namespace Org.Reddragonit.PDFReports
                     return new PDFColor(255, 255, 125, 0);
                 default:
                     int a, r, g, b;
-                    a = int.Parse(value.Substring(0, 2), NumberStyles.HexNumber, null);
-                    r = int.Parse(value.Substring(2, 2), NumberStyles.HexNumber, null);
-                    g = int.Parse(value.Substring(4, 2), NumberStyles.HexNumber, null);
-                    b = int.Parse(value.Substring(6, 2), NumberStyles.HexNumber, null);
+
+                    if (value.Length == 6)
+                    {
+                        a = 255;
+                        r = int.Parse(value.Substring(0, 2), NumberStyles.HexNumber, null);
+                        g = int.Parse(value.Substring(2, 2), NumberStyles.HexNumber, null);
+                        b = int.Parse(value.Substring(4, 2), NumberStyles.HexNumber, null);
+                    }
+                    else
+                    {
+                        a = int.Parse(value.Substring(0, 2), NumberStyles.HexNumber, null);
+                        r = int.Parse(value.Substring(2, 2), NumberStyles.HexNumber, null);
+                        g = int.Parse(value.Substring(4, 2), NumberStyles.HexNumber, null);
+                        b = int.Parse(value.Substring(6, 2), NumberStyles.HexNumber, null);
+                    }
                     return new PDFColor(a,r, g, b);
             }
         }
