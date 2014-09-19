@@ -39,7 +39,7 @@ namespace Org.Reddragonit.PDFReports.ReportElements
 
         public double EM
         {
-            get { return double.Parse(this["Size"]); }
+            get { return double.Parse(Utility.ReplacePoints(this["Size"],GraphicsUnit.Point)); }
         }
 
         public PDFBrush Brush
