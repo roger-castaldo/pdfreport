@@ -99,7 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StringTemplate\StringTemplateLibrary\StringTemplate.csproj">
-      <Project>{826664B6-1904-49B8-91AE-2C5ECAA907CD}</Project>
+      <Project>{826664b6-1904-49b8-91ae-2c5ecaa907cd}</Project>
       <Name>StringTemplate</Name>
     </ProjectReference>
   </ItemGroup>

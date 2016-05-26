@@ -77,14 +77,29 @@ namespace Org.Reddragonit.PDFReports.PageElements
             _content = new List<sParagraphChunk>();
             if (node.ChildNodes.Count > 0)
             {
-                if (node.ChildNodes[0].NodeType == XmlNodeType.Text)
-                        _content.Add(new sParagraphChunk(node.InnerText, this["Font"], null));
-                else
+                foreach (XmlNode n in node.ChildNodes)
                 {
-                    foreach (XmlNode n in node.ChildNodes)
+                    switch (n.NodeType)
                     {
-                        if (n.NodeType!=XmlNodeType.Comment)
+                        case XmlNodeType.Text:
                             _content.Add(new sParagraphChunk(n, this["Font"]));
+                            break;
+                        case XmlNodeType.Element:
+                            switch (n.Name)
+                            {
+                                case "Chunk":
+                                    _content.Add(new sParagraphChunk(n, this["Font"]));
+                                    break;
+                                default:
+                                    throw new UnexpectedElementException("Chunk", n.Name, n);
+                                    break;
+                            }
+                            break;
+                        case XmlNodeType.Comment:
+                            break;
+                        default:
+                            throw new UnexpectedElementException("Text or Chunk", n.Name, n);
+                            break;
                     }
                 }
             }
