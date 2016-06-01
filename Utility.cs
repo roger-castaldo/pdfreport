@@ -259,7 +259,7 @@ namespace Org.Reddragonit.PDFReports
                     }
                 }
                 else
-                    newChunks.Add(chunk);
+                    newChunks.Add(new sParagraphChunk(chunk.Text.Trim().Replace("\\s", " ").Replace("\\t", "\t").Replace("\\n", "\n"), chunk.Font, chunk.URL));
             }
             foreach (sParagraphChunk chunk in newChunks)
             {
