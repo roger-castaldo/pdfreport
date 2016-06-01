@@ -277,6 +277,8 @@ namespace Org.Reddragonit.PDFReports
                         else
                         {
                             tmp += chunk.Text[tindex];
+                            if (tmp.Length >= 3 && tmp.StartsWith(" ") && !tmp.StartsWith("  ") && (curOffset+curWid==0))
+                                tmp = tmp.TrimStart();
                             mes = gfx.MeasureString(tmp, fnt);
                             if (curOffset + curWid + mes.Width >= maxWidth)
                             {
