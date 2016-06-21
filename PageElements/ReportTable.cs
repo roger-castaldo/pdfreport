@@ -78,9 +78,9 @@ namespace Org.Reddragonit.PDFReports.PageElements
             if (this["Inline"] != null)
             {
                 if (!bool.Parse(this["Inline"]))
-                    _curX=(this.ignoreMargins ? 0 : OwningPage.LeftMargin);
+                    _curX = OwningPage.CurrentX;
             }else
-                _curX = (this.ignoreMargins ? 0 : OwningPage.LeftMargin);
+                _curX = (this.ignoreMargins ? X-OwningPage.LeftMargin : X);
             if (this["Width"]==null)
                 width = (this.ignoreMargins ? gfx.PageSize.Width-_curX : gfx.PageSize.Width-OwningPage.RightMargin - _curX);
             else
