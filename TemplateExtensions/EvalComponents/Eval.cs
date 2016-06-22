@@ -191,6 +191,7 @@ namespace Org.Reddragonit.PDFReports.TemplateExtensions.EvalComponents
                         case '-':
                         case '*':
                         case '/':
+                        case '%':
                             if (state == State.Operand)
                             {
                                 // Pop operators with precedence >= current operator
@@ -533,6 +534,11 @@ namespace Org.Reddragonit.PDFReports.TemplateExtensions.EvalComponents
                         tmp2 = stack.Pop();
                         stack.Push(tmp2 / tmp);
                         break;
+                    case '%':
+                        tmp = stack.Pop();
+                        tmp2 = stack.Pop();
+                        stack.Push(tmp2 % tmp);
+                        break;
                     default:
                         if (token == UnaryMinus)
                             stack.Push(-stack.Pop());
@@ -558,6 +564,7 @@ namespace Org.Reddragonit.PDFReports.TemplateExtensions.EvalComponents
                     return 1;
                 case "*":
                 case "/":
+                case "%":
                     return 2;
                 case "^":
                     return 3;

@@ -87,6 +87,7 @@ namespace Org.Reddragonit.PDFReports.PageElements
                 width = float.Parse(this["Width"]);
             bool repeatHeader = (this["RepeatHeader"] != null ? bool.Parse(this["RepeatHeader"]) : false);
             bool lockInPage = (this["LockInPage"] != null ? bool.Parse(this["LockInPage"]) : false);
+            bool noRowspanBreaks = (this["NoRowspanBreaks"]!=null ?bool.Parse(this["NoRowspanBreaks"]) : false);
             int cols = (_header==null ? 0 : _header.Cols);
             double wid=0;
             double ht=0;
@@ -113,9 +114,11 @@ namespace Org.Reddragonit.PDFReports.PageElements
                 _curY += ht;
                 height += ht;
             }
-            foreach (ReportTableRow rw in _rows)
+            for (int x = 0; x < _rows.Count;x++)
             {
-                if (_curY + rw.GetHeight(Widths, gfx) > (ignoreMargins ? gfx.PageSize.Height : gfx.PageSize.Height - OwningPage.BottomMargin))
+                ReportTableRow rw = _rows[x];
+                double rheight = _CalcRowHeight(x,gfx,noRowspanBreaks);
+                if (_curY + rheight > (ignoreMargins ? gfx.PageSize.Height : gfx.PageSize.Height - OwningPage.BottomMargin))
                 {
                     if (lockInPage)
                         break;
@@ -133,6 +136,18 @@ namespace Org.Reddragonit.PDFReports.PageElements
                 _curY += ht;
                 height += ht;
             }
+        }
+
+        private double _CalcRowHeight(int x, PDFGraphics gfx, bool noRowspanBreaks)
+        {
+            ReportTableRow rw = _rows[x];
+            double ret = rw.GetHeight(Widths, gfx);
+            if (noRowspanBreaks)
+            {
+                foreach (ReportTableCell rtc in rw.Cells)
+                    ret = Math.Max(ret, rtc.GetHeight(Widths, gfx));
+            }
+            return ret;
         }
 
         protected override void _LoadData(XmlNode node)
