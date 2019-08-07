@@ -39,7 +39,7 @@ namespace Org.Reddragonit.PDFReports.PageElements
                 string path = node["FilePath"].InnerText.Trim(new char[]{'\r','\n'});
                 path = path.Replace(node["FilePath"].Attributes["DirectorySeperator"].Value, Path.DirectorySeparatorChar.ToString());
                 if (path.StartsWith("." + Path.DirectorySeparatorChar.ToString()))
-                    path = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile.Substring(0, AppDomain.CurrentDomain.SetupInformation.ConfigurationFile.LastIndexOf(Path.DirectorySeparatorChar))+path.Substring(1);
+                    path = Directory.GetCurrentDirectory()+path.Substring(1);
                 if (!(new FileInfo(path).Exists))
                     throw new MissingImageFileException(path);
                 FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
